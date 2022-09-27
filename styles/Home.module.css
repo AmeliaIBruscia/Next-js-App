@@ -2,14 +2,65 @@
   padding: 0 2rem;
 }
 
+.signIn{
+  margin-top: 100px;
+}
+
 .main {
-  min-height: 100vh;
-  padding: 4rem 0;
+  min-height: 50vh;
+  padding: 10rem 10rem;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.popUp{
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 2rem;
+  text-align: center;
+  color: inherit;
+  text-decoration: none;
+  border: 5px solid red;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  max-width: 800px;
+}
+
+.homeImage{
+  display: inline;
+}
+
+.align{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homeButton {
+  background: #2E8B57;
+  color: white;
+  padding: 20px 20px
+}
+
+.deleteButton {
+  background: red;
+  color: white;
+  padding: 10px 10px;
+  margin-top: 2rem;
+  margin-right: 10px;
+  margin-bottom: 2rem;
+}
+
+.standardButton {
+  background: #2E8B57;
+  color: white;
+  padding: 10px 10px;
+  margin-top: 2rem;
+  margin-right: 10px;
+  margin-bottom: 2rem;
 }
 
 .footer {
@@ -40,9 +91,39 @@
 }
 
 .title {
-  margin: 0;
+  margin-top: 200;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 6rem;
+  color: #2E8B57;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.posts {
+  margin-top: 0;
+  line-height: 1.15;
+  font-size: 5rem;
+  color: #2E8B57;
+}
+
+.postGrid{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  max-width: 5000px;
+}
+
+.postCard{
+  margin-bottom: 50px;
+  padding: 5rem;
+  text-align: center;
+  color: inherit;
+  text-decoration: none;
+  border: 5px solid #eaeaea;
+  border-radius: 30px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  max-width: 800px;
 }
 
 .title,
@@ -68,21 +149,21 @@
 .grid {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  max-width: 800px;
+  max-width: 2000px;
 }
 
 .card {
-  margin: 1rem;
-  padding: 1.5rem;
+  margin-top: -20rem;
+  padding: 5rem;
   text-align: left;
   color: inherit;
   text-decoration: none;
   border: 1px solid #eaeaea;
-  border-radius: 10px;
+  border-radius: 30px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  max-width: 800px;
 }
 
 .card:hover,

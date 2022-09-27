@@ -16,5 +16,12 @@ export type AmplifyDependentResourcesAttributes = {
             "AppClientIDWeb": "string",
             "AppClientID": "string"
         }
+    },
+    "analytics": {
+        "nextamplified": {
+            "Region": "string",
+            "Id": "string",
+            "appName": "string"
+        }
     }
 }

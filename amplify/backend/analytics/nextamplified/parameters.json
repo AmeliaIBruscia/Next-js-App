@@ -1,0 +1,21 @@
+{
+    "appName": "nextamplified",
+    "roleName": "pinpointLambdaRole9d619326",
+    "cloudformationPolicyName": "cloudformationPolicy9d619326",
+    "cloudWatchPolicyName": "cloudWatchPolicy9d619326",
+    "pinpointPolicyName": "pinpointPolicy9d619326",
+    "authPolicyName": "pinpoint_amplify_9d619326",
+    "unauthPolicyName": "pinpoint_amplify_9d619326",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}
