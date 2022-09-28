@@ -1,7 +1,6 @@
 
 import React from 'react'
-import { Authenticator } from '@aws-amplify/ui-react';
-import { withAuthenticator } from '@aws-amplify/ui-react';
+import { withAuthenticator, Authenticator } from '@aws-amplify/ui-react';
 import { Amplify, Analytics, Auth, withSSRContext } from 'aws-amplify';
 import Head from 'next/head';
 import awsExports from '../src/aws-exports';
@@ -15,7 +14,17 @@ Amplify.configure({ ...awsExports, ssr: true,
     identityPoolId: 'us-east-1:c68a59e3-65af-412a-9bb6-1b2bfdd751ac',
     region: 'us-east-1'
   },
+  Analytics: {
+    disabled: false,
+    autoSessionRecord: true,
+    AwsPinpoint: {
+      appId: 'f7e1c09cf4764fa290ff7e09617a8019',
+      region: 'us-east-1'
+    }
+  }
 })
+
+//Auth.configure({ mandatorySignIn: false});
 
 // class MySignIn extends SignIn {
 //   render() {
@@ -42,6 +51,7 @@ Amplify.configure({ ...awsExports, ssr: true,
           alt="house"
         />
       </div>
+      <Authenticator>
       <main className={styles.main}>
         <div className={styles.grid}>
           <div className={styles.card}>
@@ -52,15 +62,15 @@ Amplify.configure({ ...awsExports, ssr: true,
                    <Link type="button" href="/home/MyPosts">View My Posts</Link>
                 </button>
                 <button className={styles.homeButton}type="button">
-                  <Link type="button" href="/home/MyPosts">View All Posts</Link>
+                  <Link type="button" href="/home/AllPosts">Browse Posts</Link>
                 </button>
                 <button className={styles.homeButton}type="button" onClick={() => Auth.signOut()}>
                   Sign out
                 </button>
-                {/* <button onClick={handleUpdate}>Test</button> */}
           </div>
         </div>
       </main>
+      </Authenticator>
     </div>
   );
 }

@@ -21,7 +21,7 @@ type Post = {
 export async function getServerSideProps({ req }) {
   const SSR = withSSRContext({ req });
   const response = await SSR.API.graphql({ query: listPosts });
-
+  console.log(response.data.listPosts.items)
   return {
     props: {
       posts: response.data.listPosts.items
@@ -31,6 +31,7 @@ export async function getServerSideProps({ req }) {
 
 
 export default function MyPosts({ posts = [] }) {
+  console.log(Amplify.Auth.currentUserCredentials())
 
   async function handleUpdatePost() {
 
@@ -53,22 +54,6 @@ export default function MyPosts({ posts = [] }) {
     //     }
 
   }
-  // async function handleDelete(postId) {
-  //   try {
-  //     await API.graphql({
-  //       authMode: 'AMAZON_COGNITO_USER_POOLS',
-  //       query: deletePost,
-  //       variables: {
-  //         input: { id: postId }
-  //       }
-  //     });
-
-  //     window.location.href = '/home/MyPosts';
-  //   } catch ({ errors }) {
-  //     console.error(...errors);
-  //     throw new Error(errors[0].message);
-  //   }
-  // }
 
   return (
     <div className={styles.container}>
@@ -105,15 +90,6 @@ export default function MyPosts({ posts = [] }) {
                 <Link href={`/home/posts/${post.id}`}>View Post</Link>
               </button>
               <button onClick={handleUpdatePost}>Update Post</button>
-              <Popup trigger={<button> Delete </button>} 
-                position="right center">
-                  <div className={styles.popUp}>
-                  <div className={styles.postGrid}>
-                     <div>Are you sure you want to delete this item</div>
-                  </div>
-                  <button className={styles.deleteButton}>Yes, Delete</button>
-                  </div>
-              </Popup>
             </div>
           ))}
         </div>

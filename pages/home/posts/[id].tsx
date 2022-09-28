@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect }from 'react'
 import { Amplify, API, withSSRContext } from 'aws-amplify';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -46,6 +46,7 @@ export async function getStaticProps({ params }) {
 export default function Post({ post }) {
   const router = useRouter();
 
+
   if (router.isFallback) {
     return (
       <div className={styles.container}>
@@ -64,6 +65,7 @@ export default function Post({ post }) {
         }
       });
 
+      console.log(post)
       window.location.href = '/home/MyPosts';
     } catch ({ errors }) {
       console.error(...errors);

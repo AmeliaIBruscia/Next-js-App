@@ -1,4 +1,4 @@
-import { API, Auth, Analytics, Amplify } from 'aws-amplify';
+import { API, Auth, Amplify, Analytics } from 'aws-amplify';
 import { createPost } from '../../src/graphql/mutations';
 import styles from '../../styles/Home.module.css';
 import Head from 'next/head';
@@ -8,10 +8,19 @@ import awsExports from '../../src/aws-exports';
 
 Amplify.configure({ ...awsExports, ssr: true,
   Auth: {
-    identityPoolId: 'us-east-1:c68a59e3-65af-412a-9bb6-1b2bfdd751ac',
+    identityPoolId: '',
     region: 'us-east-1'
+  },
+  Analytics: {
+    disabled: false,
+    autoSessionRecord: true,
+    AwsPinpoint: {
+      appId: 'f7e1c09cf4764fa290ff7e09617a8019',
+      region: 'us-east-1'
+    }
   }
 })
+
 
 type user  = {
   attributes: userAttributes,
@@ -47,32 +56,35 @@ export default function CreatePosts() {
     .catch(err => console.log(err))
   }, [])
 
-  async function handleCreatePost (event) {
+  const handleCreatePost = async(event) => {
     event.preventDefault();
 
     const form = new FormData(event.target);
 
     console.log(user)
+    //await Analytics.record({name: 'Create Post'})
+    const attributesPayload: any = {};
+    const result: any = await Analytics.updateEndpoint({
+      attributes: attributesPayload,
+      });
 
     // if(user) {
-    //   const attributesPayload: any = {};
-    //   const userAttributesPayload: any = {}
-    //   attributesPayload["postTitle"] = [form.get('title')];
-    //   attributesPayload["created"] = ["YES"]
-    //   userAttributesPayload["username"] = [user.username]
-
-    //   console.log(attributesPayload)
     //   try{
+    //     const attributesPayload: any = {};
+    //     //const userAttributesPayload: any = {}
+    //    // attributesPayload["postTitle"] = [form.get('title')];
+    //     //attributesPayload["created"] = ["YES"];
+    //     // userAttributesPayload["username"] = [user.username]
     //     const result: any = await Analytics.updateEndpoint({
-    //     address: user.attributes.email,
+    //     //address: user.attributes.email,
     //     attributes: attributesPayload,
-    //     channelType:'EMAIL',
-    //     optOut: 'NONE',
-    //     userAttributes: userAttributesPayload,
-    //     userId: user.attributes.email,
+    //     // channelType:'EMAIL',
+    //     // optOut: 'NONE',
+    //     // userAttributes: userAttributesPayload,
+    //     // userId: user.attributes.email,
     //     });
   
-    //    await Analytics.record({name: 'Create Post'})
+    //    //await Analytics.record({name: 'Create Post'})
     //   }
     //   catch ({ errors }){
     //     console.error(...errors);
@@ -105,7 +117,7 @@ export default function CreatePosts() {
   }
 
 
-  function handlePostCreated(){
+  async function handlePostCreated(){
     setPostCreated(true)
   }
 
